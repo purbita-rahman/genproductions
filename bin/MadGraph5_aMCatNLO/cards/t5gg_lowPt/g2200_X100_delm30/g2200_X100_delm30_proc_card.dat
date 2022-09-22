@@ -1,0 +1,45 @@
+#************************************************************
+#*                     MadGraph5_aMC@NLO                    *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*         VERSION 2.7.0                 2020-01-20         *
+#*                                                          *
+#*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+#*    https://urldefense.com/v3/__https://server06.fynu.ucl.ac.be/projects/madgraph__;!!Epnw_ITfSMW4!_xa3gagQZerVCURQEKAW64LO3dE1oQZGmdfnJ_x4-gSQ0mM1pCzHqfiAkulBsKJraQ$      *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph5_aMC@NLO         *
+#*                                                          *
+#*     run as ./bin/mg5_aMC  filename                       *
+#*                                                          *
+#************************************************************
+set default_unset_couplings 99
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set loop_optimized_output True
+set loop_color_flows False
+set gauge unitary
+set complex_mass_scheme False
+set max_npoint_for_channel 0
+import model sm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+import model MSSM_SLHA2
+define p = u u~ d d~ s s~ c c~ b b~ g
+define j = p
+define q = p
+generate p p > go go  @1
+add process p p >  go go j  @2
+add process p p > go go j j @3
+output g2200_X100_delm30/ -nojpeg
